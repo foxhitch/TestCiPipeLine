@@ -4,6 +4,10 @@ version: 2.1
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
+orbs:
+  # Declare a dependency on the welcome-orb
+  welcome: circleci/welcome-orb@0.4.1
+
 jobs:
   print_hello:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
@@ -34,7 +38,7 @@ jobs:
 workflows:
   say-hello-workflow:
     jobs:
-      - say-hello-workflow/run
+      - welcome/run
       - print_hello
       - print_world:
           requires:
